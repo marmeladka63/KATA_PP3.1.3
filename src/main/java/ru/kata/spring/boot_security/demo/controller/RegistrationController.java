@@ -12,7 +12,7 @@ import ru.kata.spring.boot_security.demo.service.RegistrationService;
 import ru.kata.spring.boot_security.demo.service.RoleService;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/registration")
 public class RegistrationController {
 
     private final RegistrationService registrationService;
@@ -25,14 +25,14 @@ public class RegistrationController {
     }
 
 
-    @GetMapping("/registration")
+    @GetMapping()
     public String regPage(Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("roles", roleService.getAllRole());
         return "registration";
     }
 
-    @PostMapping("/registration")
+    @PostMapping()
     public String formReg(@ModelAttribute("user") User user) {
         registrationService.register(user);
         return "redirect:/login";
